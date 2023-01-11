@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import VideoPost from './component/VideoPost';
 
 export default function App() {
 
@@ -19,15 +20,17 @@ export default function App() {
       return(
         <View style={styles.postView}>
           <Text>{item.text}</Text>
+          <VideoPost />
         </View>
       );
     }
 
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
 
       <FlatList 
+        style={styles.feedList}
         data={feedData}
         renderItem={renderItem}
         keyExtractor={item => item.id}
@@ -42,17 +45,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: 12,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    
+    
+  },
+
+  feedList: {
+    width:'100%'
   },
 
   postView: {
-    width:'100%',
+    marginHorizontal: 8,
+    marginBottom: 8,
     padding: 2,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    borderColor: 'red',
-    borderWidth: 1,
+    borderTopColor: 'grey',
+    borderTopWidth: 1,
     borderStyle: 'solid'
+    
   }
 });
