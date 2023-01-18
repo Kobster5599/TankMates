@@ -5,7 +5,7 @@ import VideoPost from './component/VideoPost';
 export default function App() {
 
   const feedData = [
-    { id: 1, text: 'Post 1', videoLink: '' },
+    { id: 1, text: 'Post 1', videoLink: '', webLink: '', user: 'Kobe Puskas', avatar: '' },
     { id: 2, text: 'Post 2', videoLink: '' },
     { id: 3, text: 'Post 3', videoLink: '' },
     { id: 4, text: 'Post 4', videoLink: '' },
