@@ -19,6 +19,7 @@ export default function App() {
     const renderItem = ({item, index}) => {
       return(
         <View style={styles.postView}>
+          <Avatar/>
           <Text>{item.text}</Text>
           <VideoPost />
         </View>
