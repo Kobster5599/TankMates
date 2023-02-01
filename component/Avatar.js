@@ -4,19 +4,24 @@ import { Image, StyleSheet } from 'react-native';
 import avatar from '../assets/avatar.jpg'
 
 
-const Avatar = () => {
+const Avatars = () => {
 
     return (
-        <View styles= {styles.avatarImage}>
-            <Image source={avatar} />
+        <View>
+            <Image source={avatar} style={styles.avatarImage} />
         </View>
     )
 }
 
-export default Avatar;
+export default Avatars;
 
 const styles = StyleSheet.create({
     avatarImage: {
-        width: 30,
+        width: 60,
+        height: undefined,
+        resizeMode: 'cover',
+        aspectRatio: 1,
+        borderRadius: 50
+
     }
 })

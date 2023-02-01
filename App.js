@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import VideoPost from './component/VideoPost';
+import Avatars from './component/Avatar';
 
 export default function App() {
 
@@ -17,11 +18,16 @@ export default function App() {
   ];
 
     const renderItem = ({item, index}) => {
-      return(
+      return (
         <View style={styles.postView}>
-          <Avatar/>
-          <Text>{item.text}</Text>
+          <View style={styles.avatarCol}>
+          <Avatars/>
+          </View>
+        <View style={styles.otherCol}>
+           <Text style={styles.txtBold}>{item.user}</Text>
+          <Text style={styles.txt}>{item.text}</Text>
           <VideoPost />
+        </View>
         </View>
       );
     }
@@ -53,7 +59,8 @@ const styles = StyleSheet.create({
   },
 
   feedList: {
-    width:'100%'
+    width:'100%',
+    paddingHorizontal: 12
   },
 
   postView: {
@@ -66,5 +73,30 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderStyle: 'solid'
     
+  },
+
+  avatarCol: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '15%',
+    backgroundColor: '#000',
+    marginHorizontal: 12
+  },
+
+  otherCol: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    flex: 1,
+    backgroundColor: '#000'
+  },
+
+  txt: {
+    color: 'white'
+  },
+
+  txtBold: {
+    color: 'white',
+    fontWeight: 'bold'
   }
 });
