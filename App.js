@@ -4,6 +4,7 @@ import VideoPost from './component/VideoPost';
 import Avatars from './component/Avatar';
 import VideoPlayer from './component/VideoPlayer';
 import { WebLink } from './component/WebLink';
+import Icon from './component/Icon';
 
 export default function App() {
 
@@ -30,6 +31,8 @@ export default function App() {
           <Text style={styles.txt}>{item.text}</Text>
           { item.webLink !== '' ? <WebLink link={item.webLink} /> : ''}
           { item.videoLink !== '' ? <VideoPlayer video={item.videoLink} /> : '' }
+
+          <Icon/>
         </View>
         </View>
       );
