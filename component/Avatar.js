@@ -1,10 +1,11 @@
+import React from 'react';
 import { View, Text} from 'react-native';
 import { Image, StyleSheet } from 'react-native';
 
 import avatar from '../assets/avatar.jpg'
 
 
-const Avatars = () => {
+export default function Avatar() {
 
     return (
         <View>
@@ -13,7 +14,7 @@ const Avatars = () => {
     )
 }
 
-export default Avatars;
+
 
 const styles = StyleSheet.create({
     avatarImage: {

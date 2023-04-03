@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Button, Pressable } from 'react-native';
-import { Video } from 'expo-av';
+import { Video, AVPlaybackStatus } from 'expo-av';
 
 import VideoPlayer from './VideoPlayer';
 
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   });
   
 
-export default VideoPost
+export default VideoPost;
