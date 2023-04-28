@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
-import { Video } from 'expo-av';
+import { Video, AVPlaybackStatus } from 'expo-av';
 import { AntDesign } from '@expo/vector-icons';
 
 
@@ -9,6 +10,12 @@ export default function VideoPlayer(props) {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const [dimensions, setDimensions] = React.useState({});
+
+  useEffect(() => {
+    if(video !== null) {
+      if(props.fullScreen) video.current.presentFullScreenPlayer();
+    }
+  }, [video])
 
   return (
       
