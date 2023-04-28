@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, StyleSheet, Modal, TextInput, Text, Button } from 'react-native'
+import { View, StyleSheet, Modal, TextInput, Text, Button, Pressable, Image } from 'react-native'
+import * as ImagePicker from 'expo-image-picker';
 import { AntDesign } from '@expo/vector-icons';
 
 export const NewPost = () => {
@@ -9,6 +10,7 @@ export const NewPost = () => {
     const [ videoLink, setVideoLink ] = useState('');
     const [ picLink, setPicLink ] = useState('');
     const [ webLink, setWebLink ] = useState('');
+    
     const [modalVisible, setModalVisible] = useState(false)
 
 
@@ -18,12 +20,44 @@ export const NewPost = () => {
         inputRef.current.focus();
     }, []);
 
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: false,
+          // aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.canceled) {
+          setPicLink(result.assets[0].uri);
+        }
+      };  
+    
+      const pickVideo = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+          allowsEditing: false,
+          // aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.canceled) {
+          setVideoLink(result.assets[0].uri);
+        }
+      };  
 
     return (
     <View style ={styles.container}>
         <Text style={styles.title}>New Post</Text>
         <View style={styles.post}>
             <Text style={styles.text}>{postText}</Text>
+            {picLink && <Image source={{ uri: picLink }} style={{ alignSelf: 'center', width: 480, height: 320, resizeMode: 'contain'}} />}
         </View>
         <View style={styles.input}>
         <TextInput 
@@ -54,6 +88,14 @@ export const NewPost = () => {
           Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
+             <View style={styles.modal}>
+                <Text style={styles.modalText}>New Weblink</Text>
+                <TextInput style={styles.linkInput} editable onChangeText={setWebLink} value={webLink} />
+                <Pressable onPress={() => setModalVisible(false)} style={styles.modalButton}>
+                    <Text style={styles.modalButtonText}>Close</Text>
+                </Pressable>
+
+            </View>
         
         </Modal>
         </View>
@@ -120,6 +162,29 @@ const styles = StyleSheet.create({
     button: {
         height: 24,
         backgroundColor: '#333'
+    }, 
+
+    modal: {
+        backgroundColor: 'white',
+        height: '50%',
+        marginTop: '100%',
+        padding: 8,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5
+    },
+    modalText: {
+        color: 'black',
+        fontSize: 18
+
+    },
+    modalButton: {
+        backgroundColor: 'blue',
+        padding: 5,
+        borderRadius: 5,
+    },
+    modalButtonText: {
+        color: 'white'
     }
+
 
 })

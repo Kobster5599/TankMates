@@ -1,12 +1,17 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import VideoPost from '../component/VideoPost';
 import Avatar from '../component/Avatar';
 import VideoPlayer from '../component/VideoPlayer';
 import { WebLink } from '../component/WebLink';
+import { Context } from '../Context';
+import { useContext } from 'react';
 import { ActionButton } from '../component/ActionButton';
+import logo from '../assets/logo.png';
 import Icon from '../component/Icon';
+
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -45,6 +50,10 @@ export const Main = ({ navigation }) => {
         
             return (
                 <SafeAreaView style={styles.container}>
+
+                    <View style={styles.logo} >
+                        <Image source={logo} style={styles.logoImage} />
+                    </View>
             
                   <FlatList 
                     style={styles.feedList}
@@ -110,5 +119,18 @@ export const Main = ({ navigation }) => {
                 txtBold: {
                   color: 'white',
                   fontWeight: 'bold'
-                }
+                },
+
+                logoImage: {
+                    aspectRatio: 1,
+                    resizeMode: 'contain',
+                    borderRadius: 8
+                  },
+              
+                  logo: {
+                    width: '20%',
+                    aspectRatio: 1,
+                    resizeMode: 'contain',
+                    borderRadius: 8
+                  },
               });
